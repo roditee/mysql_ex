@@ -74,6 +74,12 @@ SELECT SUBSTR(bookAuthor, 1, 1) AS "성" FROM book;
 -- 도서 테이블의 '저자' 열에서 이름만 출력
 SELECT SUBSTR(bookAuthor, 2, 2) AS "이름" FROM book;
 
+-- 저자 중에서 성이 '손'인 모든 저자 출력
+select bookAuthor from book where substr(bookAuthor, 1, 1) = '손';
+
+-- 저자 중에서 같은 성을 가진 사람이 몇 명이나 되는지 알아보기 위해 성 별로 그룹지어 인원수 출력
+select substr(bookAuthor, 1, 1) as 성, count(*) as 인원수 from book group by 성;
+
 -- 날짜 함수
 -- DATE(NOW()) : 현재 날짜 출력
 -- TIME(NOW()) : 현재 시간 출력
@@ -100,7 +106,9 @@ SELECT HOUR(CURRENT_TIME()),
        SECOND(CURRENT_TIME()),
        MICROSECOND(CURRENT_TIME());
 
-
+-- 날짜/시간 차이 계산 예제
+select datediff('2021-11-26', now());
+select timediff('23:23:23', '12:11:10');
 -- LOAD_FILE() 함수
 -- 대용량 데이터 저장
 -- 대본 : text 타입
